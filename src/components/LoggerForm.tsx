@@ -69,7 +69,7 @@ const LoggerForm = () => {
         handleChange={(e) => onChange(e)} 
       />
 
-      <button onClick={() => console.log("State", state)}>ADD</button>
+      <button className="add-button" onClick={() => console.log("State", state)}>ADD</button>
     </form>
   )
 }
