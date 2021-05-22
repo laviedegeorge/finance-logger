@@ -2,9 +2,12 @@ import React, { ChangeEvent } from "react";
 
 import { Input } from "./Form/Input";
 import { Select } from "./Form/Select";
+import { useLogs, logsReducerAction } from "../store/LoggerStore";
 
 
-const LoggerForm = () => {
+const LoggerForm = (props: {onSubmit: () => void}) => {
+  const { dispatch } = useLogs();
+  const { ADD_LOG } = logsReducerAction;
   const [state, setState] = React.useState({
     payment: "",
     toFrom: "",
@@ -36,7 +39,15 @@ const LoggerForm = () => {
   }
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) =>{
+      e.preventDefault();
+      setState({
+        payment: "",
+        toFrom: "",
+        details: "",
+        amount: ""
+      })
+    } }>
       <Select 
         name="payment"
         value={state.payment} 
@@ -69,7 +80,13 @@ const LoggerForm = () => {
         handleChange={(e) => onChange(e)} 
       />
 
-      <button className="add-button" onClick={() => console.log("State", state)}>ADD</button>
+      <button className="add-button" onClick={() =>{
+        const log = {id: Symbol(), ...state}
+        dispatch({type: ADD_LOG, payLoad: log});
+        props.onSubmit();
+      }}>
+        ADD
+      </button>
     </form>
   )
 }

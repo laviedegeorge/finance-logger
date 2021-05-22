@@ -1,5 +1,5 @@
 import React from "react";
-import { textInputAliases } from "../../aliases/FormAliases";
+import { textInputAliases } from "../../types";
 
 export const Input = (props: textInputAliases) => {
 
