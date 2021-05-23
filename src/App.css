@@ -54,8 +54,8 @@ input:hover, input:focus, select:focus, select:hover {
 }
 
 .logger-container {
+  width: 100%;
   min-height: calc(100vh - 202px);
-  justify-content: center;
   
 }
 
@@ -83,6 +83,7 @@ input:hover, input:focus, select:focus, select:hover {
 }
 
 .logs-placeholder {
+  justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;

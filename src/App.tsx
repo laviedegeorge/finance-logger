@@ -10,8 +10,8 @@ import { log } from './types';
 
 function Main() {
   const [modal, setModal] = React.useState(false);
-  const logs = useLogs();
-  console.log(logs);
+  const logsStore = useLogs();
+  console.log("logs store",logsStore);
 
   return (
     <div className="">
@@ -26,7 +26,7 @@ function Main() {
 
       <div className="logger-container">
         
-      {logs.logs.length === 0 ? 
+      {logsStore && logsStore?.logs?.length === 0 ? 
         (
         <div className="logs-placeholder">
           <p>No Logs to show at the moment...</p>
@@ -35,18 +35,18 @@ function Main() {
         : (
           
             
-              logs && logs.logs.map((log: log, idx: number) => {
-                return <Logger 
-                        key={idx} 
-                        id={log.id}
-                        header={log.payment === "Payment" ? "Payment" : "Invoice"}
-                        text={`${log.toFrom} ${log.payment === "Payment" ? "is owed" : "owes"} $${log.amount} for ${log.details}`}
-                      />
-              })
+            logsStore && logsStore.logs.map((log: log, idx: number) => {
+              return <Logger 
+                      key={idx} 
+                      id={log.id}
+                      header={log.payment === "Payment" ? "Payment" : "Invoice"}
+                      text={`${log.toFrom} ${log.payment === "Payment" ? "is owed" : "owes"} $${log.amount} for ${log.details}`}
+                    />
+            })
             
           
         )}
-        
+
       </div>
 
         
